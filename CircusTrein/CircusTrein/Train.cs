@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CircusTrein
 {
-    class Trein
+    class Train
     {
     }
 }

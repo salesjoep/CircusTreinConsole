@@ -6,7 +6,10 @@ namespace CircusTrein
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Menu
+            Console.WriteLine("Welkom bij het programma Circus Trein!");
+            Console.WriteLine("Geef de aantallen van de dieren hieronder door:");
+
         }
     }
 }
