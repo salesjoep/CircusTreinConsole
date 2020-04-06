@@ -6,21 +6,19 @@ namespace CircusTrein
     {
         static void Main(string[] args)
         {
-            void Menu()
+            static void Menu()
             {
-                string menuKeuze;
-
                 //Menu
                 Console.WriteLine("Welkom bij het programma Circus Trein!");
                 Console.WriteLine("Geef gegevens van de dieren hieronder door:\n");
 
                 Console.WriteLine("Toets 1 voor vleeseters, toets 2 voor planteneters en toets 3 voor gemengd.\n");
-                menuKeuze = Console.ReadLine();
+                string menuKeuze = Console.ReadLine();
                 if (menuKeuze == "1")
                 {
                     Console.WriteLine("U heeft gekozen voor alleen vleeseters");
                     Console.WriteLine("Toets 1 voor alleen kleine dieren, toets 2 voor alleen middel,\ntoets 3 voor alleen grote en toets 4 voor gemengd");
-                    string  menuVleeseter = Console.ReadLine();
+                    string menuVleeseter = Console.ReadLine();
 
                     if (menuVleeseter == "1")
                     {
