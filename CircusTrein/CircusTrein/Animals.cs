@@ -14,9 +14,5 @@ namespace CircusTrein
         int SmallHerbivore;
         int MediumHerbivore;
         int BigHerbivore;
-
-        //lijsten private
-        //niet hierbuiten te veranderen
-        //wel op te vragen
     }
 }
