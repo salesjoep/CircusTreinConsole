@@ -69,5 +69,10 @@ namespace CircusTrein
         {
             return wagons;
         }
+
+        public void AddAnimalToQueue(Animals animal)
+        {
+            animalsToAdd.Add(animal);
+        }
     }
 }

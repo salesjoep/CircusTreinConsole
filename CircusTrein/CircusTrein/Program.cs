@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CircusTrein
 {
@@ -30,64 +31,93 @@ namespace CircusTrein
 
             static void Keuze_3()
             {
-                Console.WriteLine("U heeft gekozen voor gemengd");
-                Console.WriteLine("Voer een naam in");
-                string name = Console.ReadLine();
-                Animals animal = new Animals(name, AnimalSize.Large, AnimalDiet.Herbivore);
-                Console.WriteLine("Voer een grootte in");
-                string size = Console.ReadLine();
-                if (size == "small")
-                {
-                    animal.Size = AnimalSize.Small;
-                    Console.WriteLine("Voer een dieet in, kies uit 'vlees' of 'planten'");
-                    string dieet = Console.ReadLine();
-                    if (dieet == "vlees")
+                bool loop = true;
+                Train train = new Train();
+                while(loop == true){
+                    Console.WriteLine("U heeft gekozen voor gemengd");
+                    Console.WriteLine("Voer een naam in");
+                    string name = Console.ReadLine();
+                    Animals animal = new Animals(name, AnimalSize.Large, AnimalDiet.Herbivore);
+                    Console.WriteLine("Voer een grootte in, kies uit 'small', 'medium', 'large'");
+                    string size = Console.ReadLine();
+                    if (size == "small")
                     {
-                        animal.Diet = AnimalDiet.Carnivore;
-                        Console.ReadLine();
+                        animal.Size = AnimalSize.Small;
+                        Console.WriteLine("Voer een dieet in, kies uit 'vlees' of 'planten'");
+                        string dieet = Console.ReadLine();
+                        if (dieet == "vlees")
+                        {
+                            animal.Diet = AnimalDiet.Carnivore;
+                            Console.ReadLine();
+                            train.AddAnimalToQueue(animal);
+                            train.InsertAnimalsToWagon();
+                            List<Wagon> wagons = train.RetrieveWagons();
+                            for (int i = 0; i < wagons.Count; i++)
+                            {
+                                Console.WriteLine("Wagon" + (i + 1));
+                                foreach (Animals animalTest in wagons[i].RetrieveAnimals())
+                                {
+                                    Console.WriteLine(animalTest.Name + animalTest.Diet + animalTest.Size);
+                                }
+                            }
+                        }
+                        if (dieet == "planten")
+                        {
+                            animal.Diet = AnimalDiet.Herbivore;
+                            Console.ReadLine();
+                            train.AddAnimalToQueue(animal);
+                            //Wil je meer dieren toevoegen? NEE->
+                            //Sorteer de dieren
+                            train.InsertAnimalsToWagon();
+                        }
                     }
-                    if (dieet == "planten")
+                    if (size == "medium")
                     {
-                        animal.Diet = AnimalDiet.Herbivore;
-                        Console.ReadLine();
+                        animal.Size = AnimalSize.Medium;
+                        Console.WriteLine("Voer een dieet in, kies uit 'vlees' of 'planten'");
+                        string dieet = Console.ReadLine();
+                        if (dieet == "vlees")
+                        {
+                            animal.Diet = AnimalDiet.Carnivore;
+                            Console.ReadLine();
+                            train.AddAnimalToQueue(animal);
+                            train.InsertAnimalsToWagon();
+                        }
+                        if (dieet == "planten")
+                        {
+                            animal.Diet = AnimalDiet.Herbivore;
+                            Console.ReadLine();
+                            train.AddAnimalToQueue(animal);
+                            train.InsertAnimalsToWagon();
+                        }
+                    }
+                    if (size == "large")
+                    {
+                        animal.Size = AnimalSize.Large;
+                        Console.WriteLine("Voer een dieet in, kies uit 'vlees' of 'planten'");
+                        string dieet = Console.ReadLine();
+                        if (dieet == "vlees")
+                        {
+                            animal.Diet = AnimalDiet.Carnivore;
+                            Console.ReadLine();
+                            train.AddAnimalToQueue(animal);
+                            train.InsertAnimalsToWagon();
+                        }
+                        if (dieet == "planten")
+                        {
+                            animal.Diet = AnimalDiet.Herbivore;
+                            Console.ReadLine();
+                            train.AddAnimalToQueue(animal);
+                            train.InsertAnimalsToWagon();
+                        }
                     }
                 }
-                if (size == "medium")
-                {
-                    animal.Size = AnimalSize.Medium;
-                    Console.WriteLine("Voer een dieet in, kies uit 'vlees' of 'planten'");
-                    string dieet = Console.ReadLine();
-                    if (dieet == "vlees")
-                    {
-                        animal.Diet = AnimalDiet.Carnivore;
-                        Console.ReadLine();
-                    }
-                    if (dieet == "planten")
-                    {
-                        animal.Diet = AnimalDiet.Herbivore;
-                        Console.ReadLine();
-                    }
-                }
-                if (size == "large")
-                {
-                    animal.Size = AnimalSize.Large;
-                    Console.WriteLine("Voer een dieet in, kies uit 'vlees' of 'planten'");
-                    string dieet = Console.ReadLine();
-                    if (dieet == "vlees")
-                    {
-                        animal.Diet = AnimalDiet.Carnivore;
-                        Console.ReadLine();
-                    }
-                    if (dieet == "planten")
-                    {
-                        animal.Diet = AnimalDiet.Herbivore;
-                        Console.ReadLine();
-                    }
-                }
+               
             }
 
             static void Keuze_2()
             {
+                Train train = new Train();
                 Console.WriteLine("U heeft gekozen voor alleen planteneters");
                 Console.WriteLine("Toets 1 voor alleen kleine dieren, toets 2 voor alleen middel,\ntoets 3 voor alleen grote en toets 4 voor gemengd");
                 string menuPlanteneters = Console.ReadLine();
@@ -98,6 +128,8 @@ namespace CircusTrein
                     Console.WriteLine("Voer een naam in");
                     string name = Console.ReadLine();
                     Animals kleinePlanteneter = new Animals(name, AnimalSize.Small, AnimalDiet.Herbivore);
+                    train.AddAnimalToQueue(kleinePlanteneter);
+                    train.InsertAnimalsToWagon();
                 }
                 else if (menuPlanteneters == "2")
                 {
@@ -105,6 +137,8 @@ namespace CircusTrein
                     Console.WriteLine("Voer een naam in");
                     string name = Console.ReadLine();
                     Animals middelPlanteneter = new Animals(name, AnimalSize.Medium, AnimalDiet.Herbivore);
+                    train.AddAnimalToQueue(middelPlanteneter);
+                    train.InsertAnimalsToWagon();
                 }
                 else if (menuPlanteneters == "3")
                 {
@@ -112,11 +146,14 @@ namespace CircusTrein
                     Console.WriteLine("Voer een naam in");
                     string name = Console.ReadLine();
                     Animals grotePlanteneter = new Animals(name, AnimalSize.Large, AnimalDiet.Herbivore);
+                    train.AddAnimalToQueue(grotePlanteneter);
+                    train.InsertAnimalsToWagon();
                 }
             }
 
             static void Keuze_1()
             {
+                Train train = new Train();
                 Console.WriteLine("U heeft gekozen voor alleen vleeseters");
                 Console.WriteLine("Toets 1 voor alleen kleine dieren, toets 2 voor alleen middel,\ntoets 3 voor alleen grote en toets 4 voor gemengd");
                 string menuVleeseter = Console.ReadLine();
@@ -127,6 +164,8 @@ namespace CircusTrein
                     Console.WriteLine("Voer een naam in");
                     string name = Console.ReadLine();
                     Animals kleineVleeseter = new Animals(name, AnimalSize.Small, AnimalDiet.Carnivore);
+                    train.AddAnimalToQueue(kleineVleeseter);
+                    train.InsertAnimalsToWagon();
                 }
                 else if (menuVleeseter == "2")
                 {
@@ -134,6 +173,8 @@ namespace CircusTrein
                     Console.WriteLine("Voer een naam in");
                     string name = Console.ReadLine();
                     Animals middelVleeseter = new Animals(name, AnimalSize.Medium, AnimalDiet.Carnivore);
+                    train.AddAnimalToQueue(middelVleeseter);
+                    train.InsertAnimalsToWagon();
                 }
                 else if (menuVleeseter == "3")
                 {
@@ -141,6 +182,8 @@ namespace CircusTrein
                     Console.WriteLine("Voer een naam in");
                     string name = Console.ReadLine();
                     Animals groteVleeseter = new Animals(name, AnimalSize.Large, AnimalDiet.Carnivore);
+                    train.AddAnimalToQueue(groteVleeseter);
+                    train.InsertAnimalsToWagon();
                 }
             }
             Console.ReadKey();
